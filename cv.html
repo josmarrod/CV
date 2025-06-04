@@ -3,619 +3,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV José Carlos Martín - Desarrollador Junior</title>
+    <title>José Carlos Martín - CV</title>
     <style>
-        /* Estilos generales */
-        :root {
-            --primary-color: #2B5F9E;
-            --secondary-color: #2E7D32;
-            --accent-color: #2E7D32;
-            --text-color: #374151;
-            --light-bg: #f3f4f6;
-            --dark-bg: #1f2937;
-            --border-radius: 8px;
-            --transition-speed: 0.3s;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Roboto', 'Open Sans', 'Calibri', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #f9fafb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: white;
+            font-size: 11px;
             margin: 0;
             padding: 0;
-            font-size: 11pt;
         }
         
         .cv-container {
-            max-width: 900px;
-            margin: 20px auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-radius: var(--border-radius);
-            overflow: hidden;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
             background: white;
-            animation: fadeIn 0.8s ease-out;
+            display: grid;
+            grid-template-columns: 35% 65%;
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Header */
-        .cv-header {
-            background: linear-gradient(135deg, var(--primary-color), #1a4b8c);
+        .sidebar {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
             color: white;
-            padding: 30px 40px;
+            padding: 30px 20px;
+            position: relative;
         }
         
-        .cv-title h1 {
-            margin: 0;
-            font-size: 1.6rem;
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+        }
+        
+        .main-content {
+            padding: 30px;
+            background: #ffffff;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .name {
+            font-size: 28px;
             font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
         }
         
-        .cv-title h2 {
-            margin: 5px 0 0;
-            font-size: 1.1rem;
-            font-weight: 400;
+        .title {
+            font-size: 15px;
+            color: #ecf0f1;
+            font-weight: 300;
+            letter-spacing: 0.8px;
             opacity: 0.9;
         }
         
-        .cv-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid rgba(255,255,255,0.3);
-            overflow: hidden;
-            background-color: #e5e7eb;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            color: var(--primary-color);
-        }
-        
-        .cv-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* Layout de 2 columnas */
-        .cv-content {
-            display: flex;
-        }
-        
-        .cv-main {
-            flex: 7;
-            padding: 25px;
-        }
-        
-        .cv-sidebar {
-            flex: 3;
-            background-color: var(--light-bg);
-            padding: 25px;
-        }
-        
-        /* Secciones */
-        .cv-section {
-            margin-bottom: 25px;
-        }
-        
-        .cv-section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            transition: color var(--transition-speed) ease;
-        }
-        
-        .cv-section-title i {
-            margin-right: 10px;
-        }
-        
-        .cv-section-title:hover {
-            color: var(--secondary-color);
-        }
-        
-        /* Perfil */
-        .profile-text {
-            background-color: rgba(37, 99, 235, 0.05);
-            padding: 15px;
-            border-left: 4px solid var(--primary-color);
-            border-radius: 0 var(--border-radius) var(--border-radius) 0;
-        }
-        
-        /* Proyectos */
-        .project-item {
+        .section {
             margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #e5e7eb;
         }
         
-        .project-title {
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
+        .section:last-child {
+            margin-bottom: 0;
         }
         
-        .project-date {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-        
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 8px;
-            gap: 5px;
-        }
-        
-        .tech-tag {
-            background-color: rgba(16, 185, 129, 0.1);
-            color: var(--accent-color);
-            font-size: 0.8rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: transform var(--transition-speed) ease, 
-                        background-color var(--transition-speed) ease;
-        }
-        
-        .tech-tag:hover {
-            transform: translateY(-2px);
-            background-color: rgba(16, 185, 129, 0.2);
-        }
-        
-        /* Experiencia y Educación */
-        .timeline-item {
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #3498db;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
             position: relative;
-            padding-left: 25px;
-            margin-bottom: 20px;
         }
         
-        .timeline-item:before {
-            content: "";
+        .section-title::after {
+            content: '';
             position: absolute;
+            bottom: -2px;
             left: 0;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--accent-color);
+            width: 30px;
+            height: 2px;
+            background: #e74c3c;
         }
         
-        .timeline-item:after {
-            content: "";
-            position: absolute;
-            left: 5px;
-            top: 18px;
-            width: 2px;
-            height: calc(100% - 5px);
-            background-color: #e5e7eb;
+        .sidebar .section-title {
+            color: #ecf0f1;
+            border-bottom-color: rgba(255,255,255,0.3);
+            font-size: 12px;
         }
         
-        .timeline-item:last-child:after {
-            display: none;
+        .sidebar .section-title::after {
+            background: #3498db;
         }
         
-        .timeline-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .timeline-subtitle {
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-        
-        /* Habilidades */
-        .skills-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .skill-item {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .skill-level {
-            color: #6b7280;
-            font-size: 0.8rem;
-        }
-        
-        .skill-bar {
-            height: 8px;
-            background-color: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-            border-radius: 4px;
-        }
-        
-        /* Contacto */
         .contact-item {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
-            transition: transform var(--transition-speed) ease;
+            font-size: 10px;
+            padding: 2px 0;
         }
         
-        .contact-item:hover {
-            transform: translateX(5px);
-        }
-        
-        .contact-icon {
-            width: 30px;
-            height: 30px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .contact-item .icon {
+            width: 18px;
             margin-right: 10px;
-            color: white;
-            font-size: 0.9rem;
+            text-align: center;
+            font-size: 12px;
         }
         
-        /* Tag de junior */
-        .junior-tag {
-            background-color: var(--accent-color);
-            color: white;
-            font-size: 0.9rem;
-            padding: 3px 10px;
-            border-radius: 4px;
-            margin-left: 10px;
-            font-weight: 400;
-            animation: pulse 2s infinite;
+        .skills-category {
+            margin-bottom: 15px;
         }
         
-        @keyframes pulse {
-            0% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.7;
-            }
-            100% {
-                opacity: 1;
-            }
+        .skills-category h4 {
+            font-size: 11px;
+            margin-bottom: 6px;
+            color: #3498db;
+            font-weight: 600;
         }
         
-        /* Responsive */
-        @media (max-width: 768px) {
-            .cv-content {
-                flex-direction: column;
+        .skills-list {
+            font-size: 10px;
+            line-height: 1.4;
+            color: #ecf0f1;
+        }
+        
+        .education-item, .cert-item {
+            margin-bottom: 12px;
+            font-size: 10px;
+        }
+        
+        .education-item h4, .cert-item h4 {
+            font-size: 11px;
+            margin-bottom: 3px;
+            line-height: 1.3;
+        }
+        
+        .education-item .institution, .cert-item .institution {
+            color: #bdc3c7;
+            font-size: 9px;
+            line-height: 1.2;
+        }
+        
+        .summary {
+            font-size: 11px;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+        
+        .experience-item, .project-item {
+            margin-bottom: 20px;
+        }
+        
+        .experience-item:last-child, .project-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .job-title, .project-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        
+        .company, .project-period {
+            font-size: 11px;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .job-description, .project-description {
+            font-size: 10px;
+            line-height: 1.5;
+        }
+        
+        .job-description ul, .project-description ul {
+            margin-left: 15px;
+            margin-top: 6px;
+        }
+        
+        .job-description li, .project-description li {
+            margin-bottom: 4px;
+        }
+        
+        .tech-stack {
+            margin-top: 8px;
+            font-size: 9px;
+            color: #3498db;
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .highlight {
+            background: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .languages {
+            font-size: 10px;
+            line-height: 1.5;
+        }
+        
+        .languages strong {
+            color: #3498db;
+        }
+        
+        @media print {
+            body { 
+                margin: 0 !important; 
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
             
-            .cv-header {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding: 20px;
+            .cv-container { 
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                page-break-inside: avoid !important;
             }
             
-            .cv-photo {
-                margin-bottom: 15px;
+            @page {
+                size: A4;
+                margin: 0 !important;
+            }
+            
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
         }
         
-        /* Animación suave al cargar */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @media screen {
+            .cv-container {
+                box-shadow: 0 8px 30px rgba(0,0,0,0.12);
             }
         }
     </style>
 </head>
 <body>
     <div class="cv-container">
-        <!-- Header -->
-        <header class="cv-header">
-            <div class="cv-title">
-                <h1>José Carlos Martín</h1>
-                <h2>Desarrollador Junior <span class="junior-tag">Disponible</span></h2>
+        <div class="sidebar">
+            <div class="header">
+                <div class="name">José Carlos<br>Martín</div>
+                <div class="title">Desarrollador Full Stack</div>
             </div>
-        </header>
-        
-        <!-- Contenido principal -->
-        <div class="cv-content">
-            <!-- Columna principal -->
-            <main class="cv-main">
-                <!-- Perfil profesional -->
-                <section class="cv-section">
-                    <h3 class="cv-section-title">Resumen Profesional</h3>
-                    <div class="profile-text">
-                        Desarrollador Junior con formación en DAM y certificado en Desarrollo de Aplicaciones Java. Apasionado por el desarrollo de software, con conocimientos en desarrollo móvil (Android y Flutter) y web (React, Next.js). En constante aprendizaje y mejora de habilidades técnicas. Estoy buscando mi primera oportunidad para crecer en el mundo del desarrollo, aprender con gente con experiencia y aportar lo mejor de mí.
-                    </div>
-                </section>
-                
-                <!-- Proyectos -->
-                <section class="cv-section">
-                    <h3 class="cv-section-title">Proyectos Destacados</h3>
-                    
-                    <div class="project-item">
-                        <div class="project-title">
-                            <span>FocusReader - Lector de Documentos con Bionic Reading</span>
-                            <span class="project-date">2024 - Presente</span>
-                        </div>
-                        <div class="project-description">
-                            Desarrollo de una aplicación Android que implementa la técnica de Lectura Biónica para mejorar la velocidad y comprensión lectora en documentos PDF, EPUB y texto plano. Incluye conversión inteligente de documentos, zoom y ajuste automático, modo oscuro/claro, y exportación de documentos con una UI intuitiva y accesible.
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Kotlin</span>
-                            <span class="tech-tag">Jetpack Compose</span>
-                            <span class="tech-tag">PDFBox</span>
-                            <span class="tech-tag">EPUBLib</span>
-                            <span class="tech-tag">WebView</span>
-                            <span class="tech-tag">Material Design 3</span>
-                            <span class="tech-tag">ViewModel</span>
-                            <span class="tech-tag">StateFlow</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-item">
-                        <div class="project-title">
-                            <span>Desarrollo Web Profesional</span>
-                            <span class="project-date">2024 - Presente</span>
-                        </div>
-                        <div class="project-description">
-                            Desarrollo de sitios web profesionales para empresas y particulares, incluyendo páginas corporativas, portfolios y landing pages. Implementación de diseños modernos y responsivos con enfoque en la experiencia de usuario, SEO y rendimiento.
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">Bootstrap</span>
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-item">
-                        <div class="project-title">
-                            <span>Portfolio de Proyectos Prácticos</span>
-                            <span class="project-date">2024 - Presente</span>
-                        </div>
-                        <div class="project-description">
-                            Desarrollo de diversas aplicaciones y herramientas para explorar diferentes tecnologías y frameworks. Incluye aplicaciones móviles multiplataforma, scripts de automatización, y pequeñas aplicaciones web. Enfocado en el aprendizaje práctico y la implementación de conceptos modernos de desarrollo.
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Flutter</span>
-                            <span class="tech-tag">Dart</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">APIs</span>
-                            <span class="tech-tag">Git</span>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Experiencia -->
-                <section class="cv-section">
-                    <h3 class="cv-section-title">Experiencia Laboral</h3>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Logística y Ventas</div>
-                        <div class="timeline-subtitle">Leroy Merlin Marbella | 2022 - Presente</div>
-                        <div class="timeline-content">
-                            <ul>
-                                <li>Gestión de pedidos e inventario mediante sistemas informáticos empresariales.</li>
-                                <li>Optimización de procesos logísticos aplicando soluciones técnicas.</li>
-                                <li>Desarrollo de macros Excel para automatizar reportes de inventario.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Programador en prácticas</div>
-                        <div class="timeline-subtitle">Vozplus | Mijas, Málaga | 2019 - 2020</div>
-                        <div class="timeline-content">
-                            <ul>
-                                <li>Desarrollo y mantenimiento de herramientas internas para gestión y supervisión de red y clientes.</li>
-                                <li>Creación de scripts en Python para automatización de tareas y generación de informes.</li>
-                                <li>Realización de consultas SQL para extracción y análisis de datos de incidencias y usuarios.</li>
-                                <li>Integración de APIs externas en herramientas internas de la empresa.</li>
-                                <li>Control de versiones con Git para seguimiento de cambios en scripts.</li>
-                                <li>Participación en pruebas de nuevas funcionalidades y reporte de errores.</li>
-                            </ul>
-                            <div class="project-tech" style="margin-top: 10px;">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">SQL</span>
-                                <span class="tech-tag">Git</span>
-                                <span class="tech-tag">REST APIs</span>
-                                <span class="tech-tag">Linux</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
             
-            <!-- Columna lateral -->
-            <aside class="cv-sidebar">
-                <!-- Contacto -->
-                <section class="cv-section">
-                    <h3 class="cv-section-title">Contacto</h3>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>+34 633-953-036</div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div>josecarlosmartrod@gmail.com</div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">🔗</div>
-                        <div>github.com/josmarrod</div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>Málaga, España</div>
-                    </div>
-                </section>
+            <div class="section">
+                <div class="section-title">Contacto</div>
+                <div class="contact-item">
+                    <span class="icon">📱</span>
+                    <span>+34 633-953-036</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">✉</span>
+                    <span>josecarlosmartrod@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">🔗</span>
+                    <span>github.com/josmarrod</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📍</span>
+                    <span>Málaga, España</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Habilidades Técnicas</div>
+                <div class="skills-category">
+                    <h4>Desarrollo Web</h4>
+                    <div class="skills-list">React • Next.js • WordPress<br>JavaScript • HTML5/CSS3<br>Tailwind CSS • Bootstrap<br>PHP • MySQL</div>
+                </div>
+                <div class="skills-category">
+                    <h4>Desarrollo Móvil</h4>
+                    <div class="skills-list">Android • Kotlin<br>Jetpack Compose • Flutter<br>Room Database • MVVM</div>
+                </div>
+                <div class="skills-category">
+                    <h4>Lenguajes</h4>
+                    <div class="skills-list">Java • Kotlin • Python<br>JavaScript • Dart • SQL</div>
+                </div>
+                <div class="skills-category">
+                    <h4>Herramientas</h4>
+                    <div class="skills-list">Git/GitHub • REST APIs<br>Linux • Agile • Excel VBA</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Educación</div>
+                <div class="education-item">
+                    <h4>2º año Máster en Ciberseguridad</h4>
+                    <div class="institution">Prometeo The Power FP</div>
+                </div>
+                <div class="education-item">
+                    <h4>2º año Grado Superior DAM</h4>
+                    <div class="institution">Prometeo The Power FP</div>
+                </div>
+                <div class="education-item">
+                    <h4>Grado Medio SMR</h4>
+                    <div class="institution">IES Vega de Mijas | 2017-2019</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Certificaciones</div>
+                <div class="cert-item">
+                    <h4>Desarrollo de Aplicaciones Java</h4>
+                    <div class="institution">Grupo INSEM | 2024</div>
+                </div>
+                <div class="cert-item">
+                    <h4>Agile Project Management</h4>
+                    <div class="institution">Grupo INSEM | 2024</div>
+                </div>
+                <div class="cert-item">
+                    <h4>CISCO CCNA</h4>
+                    <div class="institution">IES Vega de Mijas | 2019</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Idiomas</div>
+                <div class="languages">
+                    <strong>Español:</strong> Nativo<br>
+                    <strong>Inglés:</strong> B2
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="section">
+                <div class="section-title">Perfil Profesional</div>
+                <div class="summary">
+                    Desarrollador Junior con formación en DAM y experiencia freelance en desarrollo web. Apasionado por la tecnología y el desarrollo de software, cuento con una base sólida en programación de aplicaciones multiplataforma y conocimientos en ciberseguridad. Actualmente desarrollo sitios web corporativos como freelance utilizando tecnologías modernas como WordPress, React y Next.js. Busco incorporarme al sector tecnológico para seguir creciendo profesionalmente, aportar soluciones eficientes y seguir aprendiendo día a día.
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Proyectos Destacados</div>
                 
-                <!-- Educación -->
-                <section class="cv-section">
-                    <h3 class="cv-section-title">Educación</h3>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Grado Superior DAM</div>
-                        <div class="timeline-subtitle">Prometeo The Power FP | 2024 - Presente</div>
+                <div class="project-item">
+                    <div class="project-title">Desarrollo Web Profesional (Freelance)</div>
+                    <div class="project-period">2024 - Presente</div>
+                    <div class="project-description">
+                        Desarrollo de sitios web profesionales para empresas y particulares, incluyendo páginas corporativas, portfolios y landing pages. Especializado en WordPress personalizado y aplicaciones React modernas. Implementación de diseños responsivos con enfoque en experiencia de usuario, SEO y rendimiento optimizado.
+                        <ul>
+                            <li>Desarrollo de sitios WordPress personalizados con temas a medida</li>
+                            <li>Aplicaciones web completas con React y Next.js</li>
+                            <li>Optimización SEO y mejora de velocidad de carga</li>
+                            <li>Integración de sistemas de gestión de contenido</li>
+                            <li>Diseño responsivo adaptado a todos los dispositivos</li>
+                        </ul>
+                        <div class="tech-stack">WordPress • React • Next.js • Tailwind CSS • JavaScript • PHP • MySQL</div>
                     </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Desarrollo de Aplicaciones Java</div>
-                        <div class="timeline-subtitle">Grupo INSEM | 2024</div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Agile Project Management</div>
-                        <div class="timeline-subtitle">Grupo INSEM | 2024</div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Grado Medio SMR</div>
-                        <div class="timeline-subtitle">IES Vega de Mijas | 2017 - 2019</div>
-                    </div>
-                </section>
+                </div>
                 
-                <!-- Skills -->
-                <section class="cv-section">
-                    <h3 class="cv-section-title">Habilidades Técnicas</h3>
-                    
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Lenguajes de Programación</span>
-                            </div>
-                            <div class="project-tech">
-                                <span class="tech-tag">Java</span>
-                                <span class="tech-tag">Kotlin</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">Dart</span>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Desarrollo Móvil</span>
-                            </div>
-                            <div class="project-tech">
-                                <span class="tech-tag">Android</span>
-                                <span class="tech-tag">Kotlin</span>
-                                <span class="tech-tag">Jetpack Compose</span>
-                                <span class="tech-tag">Flutter</span>
-                                <span class="tech-tag">MVVM</span>
-                                <span class="tech-tag">Room Database</span>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Desarrollo Web</span>
-                            </div>
-                            <div class="project-tech">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Next.js</span>
-                                <span class="tech-tag">Tailwind CSS</span>
-                                <span class="tech-tag">Bootstrap</span>
-                                <span class="tech-tag">HTML5/CSS3</span>
-                                <span class="tech-tag">JavaScript</span>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Bases de Datos</span>
-                            </div>
-                            <div class="project-tech">
-                                <span class="tech-tag">SQL</span>
-                                <span class="tech-tag">MySQL</span>
-                                <span class="tech-tag">Room Database</span>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Herramientas y Metodologías</span>
-                            </div>
-                            <div class="project-tech">
-                                <span class="tech-tag">Git/GitHub</span>
-                                <span class="tech-tag">REST APIs</span>
-                                <span class="tech-tag">Linux</span>
-                                <span class="tech-tag">Agile</span>
-                            </div>
-                        </div>
+                <div class="project-item">
+                    <div class="project-title">FocusReader - Lector con Bionic Reading</div>
+                    <div class="project-period">2024 - Presente</div>
+                    <div class="project-description">
+                        Aplicación Android que implementa técnicas de Lectura Biónica para mejorar velocidad y comprensión lectora en documentos PDF, EPUB y texto plano. Incluye conversión inteligente, modo oscuro/claro y UI accesible.
+                        <div class="tech-stack">Kotlin • Jetpack Compose • PDFBox • Material Design 3</div>
                     </div>
-                </section>
+                </div>
                 
-                <!-- Certificaciones -->
-                <section class="cv-section">
-                    <h3 class="cv-section-title">Certificaciones</h3>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">CISCO CCNA</div>
-                        <div class="timeline-subtitle">IES Vega de Mijas | 2019</div>
+                <div class="project-item">
+                    <div class="project-title">Portfolio de Proyectos Multiplataforma</div>
+                    <div class="project-period">2024 - Presente</div>
+                    <div class="project-description">
+                        Desarrollo de aplicaciones móviles multiplataforma y herramientas de automatización. Enfoque en implementación de conceptos modernos y exploración de diferentes tecnologías.
+                        <div class="tech-stack">Flutter • Python • Git • APIs REST</div>
                     </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Marketing Online</div>
-                        <div class="timeline-subtitle">Google Actívate | 2018</div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Web Development</div>
-                        <div class="timeline-subtitle">Google Actívate | 2018</div>
-                    </div>
-                </section>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Experiencia Laboral</div>
                 
-                <!-- Idiomas y Otros -->
-                <section class="cv-section">
-                    <h3 class="cv-section-title">Idiomas y Otros</h3>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Inglés</div>
-                        <div class="timeline-subtitle">Nivel B1</div>
+                <div class="experience-item">
+                    <div class="job-title">Especialista en Logística y Ventas</div>
+                    <div class="company">Leroy Merlin Marbella | 2022 - Presente</div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Gestión de pedidos e inventario mediante sistemas informáticos empresariales</li>
+                            <li>Desarrollo de macros en Excel para automatizar reportes de inventario</li>
+                            <li>Optimización de procesos logísticos aplicando soluciones técnicas</li>
+                        </ul>
+                        <div class="tech-stack">Excel VBA • Sistemas ERP • Automatización</div>
                     </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Disponibilidad</div>
-                        <div class="timeline-subtitle">Completa</div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">Programador en Prácticas</div>
+                    <div class="company">Vozplus | Mijas, Málaga | 2019 - 2020</div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Desarrollo de herramientas internas para gestión y supervisión de red</li>
+                            <li>Creación de scripts Python para automatización y generación de informes</li>
+                            <li>Consultas SQL para análisis de datos de incidencias y usuarios</li>
+                            <li>Integración de APIs externas en herramientas empresariales</li>
+                        </ul>
+                        <div class="tech-stack">Python • SQL • Git • REST APIs • Linux</div>
                     </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-title">Permiso de conducir</div>
-                        <div class="timeline-subtitle">B, A1 y vehículo propio</div>
-                    </div>
-                </section>
-            </aside>
+                </div>
+            </div>
         </div>
     </div>
 </body>
